@@ -455,13 +455,13 @@
                 <div style="display: flex; align-items: flex-end; justify-content: center; gap: 1px; height: 45px; margin-bottom: 8px;">
                     <div style="width: 2px; height: 8px; background: #d35400;"></div>
                     <div style="width: 12px; height: 20px; background: #2ecc71; border: 1px solid #27ae60; border-radius: 2px;"></div>
-                    <div style="width: 2px; height: 6px; background: #d35400;\"></div>
-                    <div style="margin-left: 3px; width: 2px; height: 14px; background: #d35400;\"></div>
-                    <div style="width: 12px; height: 18px; background: #ff4d4d; border: 1px solid #d35400; border-radius: 2px;\"></div>
-                    <div style="width: 2px; height: 12px; background: #d35400;\"></div>
+                    <div style="width: 2px; height: 6px; background: #d35400;"></div>
+                    <div style="margin-left: 3px; width: 2px; height: 14px; background: #d35400;"></div>
+                    <div style="width: 12px; height: 18px; background: #ff4d4d; border: 1px solid #d35400; border-radius: 2px;"></div>
+                    <div style="width: 2px; height: 12px; background: #d35400;"></div>
                 </div>
                 <small><b>吞沒形態</b></small><br>
-                <small style="color: #666; font-size: 10px;\">大線吞小線，趨勢延續</small>
+                <small style="color: #666; font-size: 10px;">大線吞小線，趨勢延續</small>
             </div>
         </div>
 
@@ -483,30 +483,35 @@
         <div style="display: flex; gap: 20px; flex-wrap: wrap; background: #fff; border: 1px solid #ddd; padding: 20px; border-radius: 0 0 8px 8px;">
             <div style="flex: 1.5; min-width: 320px; border-right: 1px solid #eee; padding-right: 20px; text-align: left;">
                 <h4 style="margin-top: 0; color: #2c3e50;">📈 K 線連續圖示</h4>
-                <div id="k-chart" style="display: flex; align-items: flex-end; justify-content: space-around; gap: 12px; height: 160px; padding: 12px; border: 1px solid #eee; border-radius: 12px; background: #fafbfc;">
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1; text-align: center;">
-                        <div style="width: 1.5px; height: 10px; background: #27ae60;"></div>
-                        <div style="width: 14px; height: 40px; background: #2ecc71; border: 1px solid #27ae60; border-radius: 1px;"></div>
-                        <div style="width: 1.5px; height: 14px; background: #27ae60;"></div>
-                    </div>
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1; text-align: center;">
-                        <div style="width: 1.5px; height: 16px; background: #d35400;"></div>
-                        <div style="width: 14px; height: 32px; background: #ff4d4d; border: 1px solid #d35400; border-radius: 1px;"></div>
-                        <div style="width: 1.5px; height: 8px; background: #d35400;"></div>
-                    </div>
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1; text-align: center;">
-                        <div style="width: 1.5px; height: 12px; background: #27ae60;"></div>
-                        <div style="width: 14px; height: 48px; background: #2ecc71; border: 1px solid #27ae60; border-radius: 1px;"></div>
-                        <div style="width: 1.5px; height: 10px; background: #27ae60;"></div>
-                    </div>
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1; text-align: center;">
-                        <div style="width: 1.5px; height: 14px; background: #d35400;"></div>
-                        <div style="width: 14px; height: 36px; background: #ff4d4d; border: 1px solid #d35400; border-radius: 1px;"></div>
-                        <div style="width: 1.5px; height: 12px; background: #d35400;"></div>
-                    </div>
-                </div>
+                <div id="k-chart" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; height: 170px; padding: 16px; border: 1px solid #eee; border-radius: 12px; background: #fafbfc;">
+                      <div class="mini-candle" style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1; min-width: 38px;">
+                          <div class="wick top" style="width: 1.5px; height: 18px; background: #27ae60; margin-bottom: 2px;"></div>
+                          <div class="body" style="width: 14px; height: 48px; background: #2ecc71; border: 1px solid #27ae60; border-radius: 2px;"></div>
+                          <div class="wick bottom" style="width: 1.5px; height: 8px; background: #27ae60; margin-top: 2px;"></div>
+                      </div>
+                      <div class="mini-candle" style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1; min-width: 38px;">
+                          <div class="wick top" style="width: 1.5px; height: 16px; background: #27ae60; margin-bottom: 2px;"></div>
+                          <div class="body" style="width: 14px; height: 28px; background: #2ecc71; border: 1px solid #27ae60; border-radius: 2px;"></div>
+                          <div class="wick bottom" style="width: 1.5px; height: 14px; background: #27ae60; margin-top: 2px;"></div>
+                      </div>
+                      <div class="mini-candle" style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1; min-width: 38px;">
+                          <div class="wick top" style="width: 1.5px; height: 12px; background: #27ae60; margin-bottom: 2px;"></div>
+                          <div class="body" style="width: 14px; height: 52px; background: #2ecc71; border: 1px solid #27ae60; border-radius: 2px;"></div>
+                          <div class="wick bottom" style="width: 1.5px; height: 10px; background: #27ae60; margin-top: 2px;"></div>
+                      </div>
+                      <div class="mini-candle" style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1; min-width: 38px;">
+                          <div class="wick top" style="width: 1.5px; height: 10px; background: #d35400; margin-bottom: 2px;"></div>
+                          <div class="body" style="width: 14px; height: 32px; background: #ff4d4d; border: 1px solid #d35400; border-radius: 2px;"></div>
+                          <div class="wick bottom" style="width: 1.5px; height: 10px; background: #d35400; margin-top: 2px;"></div>
+                      </div>
+                  </div>
                 <div style="display: flex; justify-content: space-between; margin-top: 12px; font-size: 13px; color: #555;">
-                    <span>支撐</span><span>趨勢</span><span>壓力</span>
+                    <span>支撐區</span><span>趨勢線</span><span>壓力區</span>
+                </div>
+                <div style="margin-top: 12px; padding: 12px; background: #eef6ff; border: 1px solid #d5e6ff; border-radius: 12px; color: #3d5a77; font-size: 13px; line-height: 1.6;">
+                    <strong>支撐：</strong> 位於下方價格區域，常有買盤出現。<br>
+                    <strong>壓力：</strong> 位於上方價格區域，常有賣壓出現。<br>
+                    <strong>趨勢線：</strong> 觀察價格是否在支撐與壓力之間延續或突破，幫助判斷多空方向。
                 </div>
                 <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px;">
                     <button onclick="toggleK('up')" style="flex:1; min-width: 120px; background:#2ecc71; color:white; border:none; padding:10px 12px; border-radius:6px; font-weight:bold;">看漲示例</button>
@@ -517,14 +522,14 @@
                     <p style="font-size: 13px; color: #555; line-height: 1.7; margin: 0;">長實體代表多或空力道強，影線代表當日高低點。連續多根相同方向的 K 線，通常代表趨勢延續。</p>
                 </div>
             </div>
-            <div style="flex: 1; min-width: 320px;">
+            <div style="flex: 1; min-width: 260px; max-width: 360px; margin: 0 auto;">
                 <h3>📱 模擬下單</h3>
                 <div style="background: #f8f9fa; padding: 15px; border-radius: 15px; border: 1px solid #e6e9ee;">
                     <div class="pe-input-group"><label>委託價</label><input type="number" id="trade-price" value="31" oninput="calcTradeTotal()"></div>
                     <div class="pe-input-group"><label>股數</label><input type="number" id="trade-shares" value="1000" oninput="calcTradeTotal()"></div>
-                    <div style="background: #fff; padding: 12px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #e1e6eb;\">
-                        <div style="font-size: 13px; color: #555;\">預估總額：</div>
-                        <div id=\"trade-total\" style=\"font-size: 20px; font-weight: bold;\">NT$ 31,000</div>
+                    <div style="background: #fff; padding: 12px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #e1e6eb;">
+                        <div style="font-size: 13px; color: #555;">預估總額：</div>
+                        <div id="trade-total" style="font-size: 20px; font-weight: bold;">NT$ 31,000</div>
                     </div>
                     <div style="display:grid; gap:10px;">
                         <button onclick="executeTrade('buy')" style="width:100%; background: #2ecc71; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold;">買進委託</button>
@@ -644,7 +649,7 @@
                     </div>
                 </div>
             </div>
-            <div style="flex: 1; min-width: 300px; text-align: center; border: 1px solid #eee; padding: 20px; border-radius: 12px;">
+            <div style="flex: 1; min-width: 260px; max-width: 360px; text-align: center; border: 1px solid #eee; padding: 20px; border-radius: 12px; margin: 0 auto;">
                 <h4 style="margin-top: 0;">🎨 資產配置模擬器</h4>
                 <div id="pie-chart" style="width: 180px; height: 180px; border-radius: 50%; margin: 15px auto; background: conic-gradient(var(--info-color) 0% 70%, #bdc3c7 70% 100%); transition: 0.5s; border: 3px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.1);"></div>
                 <div style="font-size: 14px; margin-bottom: 10px;">股票: <b id="stock-pct">70</b>% | 債券: <b id="bond-pct">30</b>%</div>
@@ -970,34 +975,42 @@
 
     function toggleK(type) {
         const chart = document.getElementById('k-chart');
-        const entries = chart.querySelectorAll('.mini-candle div');
-        if (type === 'up') {
-            entries[0].style.background = '#2ecc71';
-            entries[0].style.borderColor = '#27ae60';
-            entries[1].style.background = '#2ecc71';
-            entries[1].style.borderColor = '#27ae60';
-            entries[2].style.background = '#2ecc71';
-            entries[2].style.borderColor = '#27ae60';
-            entries[3].style.background = '#ff4d4d';
-            entries[3].style.borderColor = '#d35400';
-        } else {
-            entries[0].style.background = '#ff4d4d';
-            entries[0].style.borderColor = '#d35400';
-            entries[1].style.background = '#ff4d4d';
-            entries[1].style.borderColor = '#d35400';
-            entries[2].style.background = '#2ecc71';
-            entries[2].style.borderColor = '#27ae60';
-            entries[3].style.background = '#ff4d4d';
-            entries[3].style.borderColor = '#d35400';
-        }
+        const candles = chart.querySelectorAll('.mini-candle');
+        const patterns = {
+            up: [
+                { top: 18, body: 48, bottom: 8, color: '#2ecc71', border: '#27ae60' },
+                { top: 16, body: 28, bottom: 14, color: '#2ecc71', border: '#27ae60' },
+                { top: 12, body: 52, bottom: 10, color: '#2ecc71', border: '#27ae60' },
+                { top: 10, body: 32, bottom: 10, color: '#ff4d4d', border: '#d35400' }
+            ],
+            down: [
+                { top: 10, body: 38, bottom: 18, color: '#ff4d4d', border: '#d35400' },
+                { top: 12, body: 52, bottom: 8, color: '#ff4d4d', border: '#d35400' },
+                { top: 18, body: 28, bottom: 10, color: '#2ecc71', border: '#27ae60' },
+                { top: 16, body: 48, bottom: 12, color: '#ff4d4d', border: '#d35400' }
+            ]
+        };
+        const pattern = patterns[type] || patterns.up;
+        candles.forEach((candle, index) => {
+            const wickTop = candle.querySelector('.wick.top');
+            const wickBottom = candle.querySelector('.wick.bottom');
+            const body = candle.querySelector('.body');
+            if (!body || !wickTop || !wickBottom) return;
+            const p = pattern[index];
+            wickTop.style.height = p.top + 'px';
+            wickTop.style.background = p.color;
+            wickBottom.style.height = p.bottom + 'px';
+            wickBottom.style.background = p.color;
+            body.style.height = p.body + 'px';
+            body.style.background = p.color;
+            body.style.borderColor = p.border;
+        });
     }
 
     function calcTradeTotal() {
         const p = Math.max(0, parseFloat(document.getElementById('trade-price').value) || 0);
         const s = Math.max(0, parseInt(document.getElementById('trade-shares').value, 10) || 0);
         const total = p * s;
-        const fee = Math.max(0, total * 0.001425).toFixed(0);
-        document.getElementById('trade-fee').value = fee ? 'NT$ ' + Number(fee).toLocaleString() : 'NT$ 0';
         document.getElementById('trade-total').innerText = "NT$ " + total.toLocaleString();
     }
 
