@@ -325,6 +325,8 @@
                 <div id="m-p-val" style="text-align: right; font-weight: bold;">$5,000</div>
                 <small>年化報酬 (%)：</small><input type="range" id="m-r" min="1" max="15" step="1" value="7" oninput="calcCompound()">
                 <div id="m-r-val" style="text-align: right; font-weight: bold;">7%</div>
+                <small>年數：</small><input type="range" id="m-y" min="5" max="40" step="1" value="20" oninput="calcCompound()">
+                <div id="m-y-val" style="text-align: right; font-weight: bold;">20 年</div>
                 
                 <div class="calc-result-grid">
                     <div class="calc-box"><small>投入總成本</small><br><strong id="cost-val">$0</strong></div>
@@ -332,7 +334,7 @@
                 </div>
 
                 <div style="margin-top: 15px; padding: 15px; background: var(--primary-color); color: white; border-radius: 8px; text-align: center;">
-                    <small>20 年後資產總額</small><br>
+                    <small><span id="duration-label">20 年後資產總額</span></small><br>
                     <span id="final-amount" style="font-size: 24px; font-weight: bold;">$0</span>
                 </div>
                 <div style="margin-top: 18px; background: #eef7ff; padding: 15px; border-radius: 10px; border: 1px solid #cfe5ff;">
@@ -363,6 +365,8 @@
                     <div class="flip-card" onclick="toggleFlip(this)"><div class="flip-card-inner"><div class="flip-card-front">限價單</div><div class="flip-card-back">指定價格買賣，未達標不成交。適合想要控制成本、鎖定買入價格或避開價格暴漲跌。</div></div></div>
                     <div class="flip-card" onclick="toggleFlip(this)"><div class="flip-card-inner"><div class="flip-card-front">市價單</div><div class="flip-card-back">不計代價即刻成交，適合急單或想快速進出市場。成本不可控，適合短期策略。</div></div></div>
                     <div class="flip-card" onclick="toggleFlip(this)"><div class="flip-card-inner"><div class="flip-card-front">T+2</div><div class="flip-card-back">成交後的第二個工作天進行資金扣款。台灣股市的結算制度，買進股票後需在 T+2 日前準備足夠資金。</div></div></div>
+                    <div class="flip-card" onclick="toggleFlip(this)"><div class="flip-card-inner"><div class="flip-card-front">手續費</div><div class="flip-card-back">券商收取的交易費用。台灣現行市場約 0.1425%（買進、賣出各計）或最低 20 元。</div></div></div>
+                    <div class="flip-card" onclick="toggleFlip(this)"><div class="flip-card-inner"><div class="flip-card-front">交易稅</div><div class="flip-card-back">股票賣出時由政府收取的稅金，台灣約為 0.3%。需把它納入總成本。</div></div></div>
                 </div>
             </div>
         </div>
@@ -382,10 +386,10 @@
             <div style="background: #f8fafc; border: 1px solid #dfe8f2; padding: 20px; border-radius: 12px;">
                 <h4 style="margin-top: 0; color: #2c3e50;">📌 交易必備名詞</h4>
                 <ul style="font-size: 14px; line-height: 1.8; color: #444;">
-                    <li><strong>手續費：</strong> 證券商交易費用，會影響成本。</li>
-                    <li><strong>交易稅：</strong> 股票賣出時的稅金，需計入報酬率。</li>
-                    <li><strong>委託價：</strong> 你下單的價格；限價單可控制，市價單則由市場決定。</li>
-                    <li><strong>成交價：</strong> 真正成交的價格。買進時若市價單，可能高於你看到的價格。</li>
+                    <li><strong>手續費：</strong> 證券商收取的交易費用，通常約 0.1425%（買進與賣出各計）或最低 20 元，實際金額依券商而異。</li>
+                    <li><strong>交易稅：</strong> 股票賣出時的稅金，台灣約為 0.3%，只在賣出時計算。</li>
+                    <li><strong>委託價：</strong> 你下單時所指定的價格；限價單可控制，市價單則由市場決定。</li>
+                    <li><strong>成交價：</strong> 真正成交的價格，市價單成交價可能與你看到的報價不同。</li>
                 </ul>
             </div>
         </div>
@@ -438,11 +442,20 @@
                     </div>
                 </div>
                 <p style="font-size: 13px; color: #555; margin-top: 12px;">常見型態：</p>
-                <ul style="font-size: 13px; line-height: 1.8; color: #555;">
-                    <li><strong>十字線：</strong> 表示多空猶豫，可能反轉訊號。</li>
-                    <li><strong>錘子線：</strong> 下影線長，顯示下檔支撐。</li>
-                    <li><strong>吞沒形態：</strong> 大 K 線吞噬前一根，可能代表趨勢開始。</li>
-                </ul>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 10px;">
+                    <div style="background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 14px;">
+                        <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 10px;"><div style="width: 12px; height: 40px; background: #2ecc71; border: 1px solid #27ae60; margin-right: 4px;"></div><div style="width: 12px; height: 10px; background: #2ecc71; border: 1px solid #27ae60; margin-top: 12px;"></div><strong>錘子線</strong></div>
+                        <p style="font-size: 13px; color: #555; margin:0;">實體小、上影線短、下影線長，代表下跌後買盤出現支撐，可能轉多。</p>
+                    </div>
+                    <div style="background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 14px;">
+                        <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 10px;"><div style="width: 12px; height: 40px; background: #ff4d4d; border: 1px solid #d35400; margin-right: 4px;"></div><div style="width: 12px; height: 10px; background: #ff4d4d; border: 1px solid #d35400; margin-top: 12px;"></div><strong>十字線</strong></div>
+                        <p style="font-size: 13px; color: #555; margin:0;">開盤與收盤幾乎相同，代表多空猶豫。出現在趨勢末端時，可能暗示反轉。</p>
+                    </div>
+                    <div style="background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 14px;">
+                        <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 10px;"><div style="width: 12px; height: 45px; background: #2ecc71; border: 1px solid #27ae60; margin-right: 4px;"></div><div style="width: 12px; height: 25px; background: #ff4d4d; border: 1px solid #d35400; margin-top: 10px;"></div><strong>吞沒形態</strong></div>
+                        <p style="font-size: 13px; color: #555; margin:0;">一根大 K 線包住前一根，若方向一致，表示慣性增強，趨勢可能延續。</p>
+                    </div>
+                </div>
                 <p style="font-size: 11px; color: #999; margin-top: 10px;">※ 註：在美股中，紅色通常代表跌，綠色代表漲，與台股顏色習慣不同。</p>
             </div>
         </div>
@@ -458,33 +471,49 @@
         </div>
 
         <!-- 模擬下單介面 -->
-        <div style="background: #2c3e50; color: #ecf0f1; padding: 10px 15px; border-radius: 8px 8px 0 0; display: flex; justify-content: space-between; font-size: 14px;">
+        <div style="background: #2c3e50; color: #ecf0f1; padding: 10px 15px; border-radius: 8px 8px 0 0; display: flex; justify-content: space-between; font-size: 14px; flex-wrap: wrap; gap: 10px;">
             <span>📅 市場即時模擬</span>
             <span>⏰ 時間：<span id="current-time">09:30:00</span></span>
         </div>
         <div style="display: flex; gap: 20px; flex-wrap: wrap; background: #fff; border: 1px solid #ddd; padding: 20px; border-radius: 0 0 8px 8px;">
-            <div style="flex: 1.5; min-width: 320px; border-right: 1px solid #eee; padding-right: 20px; text-align: center;">
-                <div style="position: relative; height: 300px; width: 120px; margin: 20px auto;">
-                    <div id="upper-wick" class="wick" style="position: absolute; left: 59px; top: 0; width: 2px; height: 50px; background: #333;"></div>
-                    <div id="k-bar" style="position: absolute; left: 35px; top: 50px; width: 50px; height: 160px; background: #ff4d4d; border: 2px solid #333; transition: 0.3s; z-index: 2;">
-                        <span id="label-top" style="position: absolute; right: -85px; top: -10px; font-size: 12px; font-weight: bold; color: #d35400;">收盤價</span>
-                        <span id="label-bottom" style="position: absolute; right: -85px; bottom: -10px; font-size: 12px; font-weight: bold; color: #d35400;">開盤價</span>
-                    </div>
-                    <div id="lower-wick" class="wick" style="position: absolute; left: 59px; top: 210px; width: 2px; height: 50px; background: #333;"></div>
+            <div style="flex: 1.5; min-width: 320px; border-right: 1px solid #eee; padding-right: 20px; text-align: left;">
+                <h4 style="margin-top: 0; color: #2c3e50;">📈 K 線連續圖示</h4>
+                <div id="k-chart" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; height: 220px; padding: 10px; border: 1px solid #eee; border-radius: 12px; background: #fafbfc;">
+                    <div class="mini-candle" id="candle-1" style="flex:1; display:flex; align-items:flex-end; justify-content:center;"><div style="width: 22px; height: 100px; background: #2ecc71; border: 2px solid #27ae60; border-radius: 4px 4px 0 0;"></div></div>
+                    <div class="mini-candle" id="candle-2" style="flex:1; display:flex; align-items:flex-end; justify-content:center;"><div style="width: 22px; height: 70px; background: #ff4d4d; border: 2px solid #d35400; border-radius: 4px 4px 0 0;"></div></div>
+                    <div class="mini-candle" id="candle-3" style="flex:1; display:flex; align-items:flex-end; justify-content:center;"><div style="width: 22px; height: 120px; background: #2ecc71; border: 2px solid #27ae60; border-radius: 4px 4px 0 0;"></div></div>
+                    <div class="mini-candle" id="candle-4" style="flex:1; display:flex; align-items:flex-end; justify-content:center;"><div style="width: 22px; height: 90px; background: #ff4d4d; border: 2px solid #d35400; border-radius: 4px 4px 0 0;"></div></div>
                 </div>
-                <button onclick="toggleK('up')" style="background:#ff4d4d; color:white; border:none; padding:8px 15px; border-radius:4px; font-weight:bold;">看漲：收盤高於開盤</button>
-                <button onclick="toggleK('down')" style="background:#2ecc71; color:white; border:none; padding:8px 15px; border-radius:4px; font-weight:bold;">看跌：開盤高於收盤</button>
+                <div style="display: flex; justify-content: space-between; margin-top: 12px; font-size: 13px; color: #555;">
+                    <span>支撐</span><span>趨勢</span><span>壓力</span>
+                </div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px;">
+                    <button onclick="toggleK('up')" style="flex:1; min-width: 120px; background:#2ecc71; color:white; border:none; padding:10px 12px; border-radius:6px; font-weight:bold;">看漲示例</button>
+                    <button onclick="toggleK('down')" style="flex:1; min-width: 120px; background:#ff4d4d; color:white; border:none; padding:10px 12px; border-radius:6px; font-weight:bold;">看跌示例</button>
+                </div>
+                <div style="margin-top: 18px; background: #f8f9fa; border: 1px solid #dfe3e8; border-radius: 12px; padding: 14px;">
+                    <h5 style="margin:0 0 10px 0; color: #2c3e50;">K 線小知識</h5>
+                    <p style="font-size: 13px; color: #555; line-height: 1.7; margin: 0;">長實體代表多或空力道強，影線代表當日高低點。連續多根相同方向的 K 線，通常代表趨勢延續。</p>
+                </div>
             </div>
-            <div style="flex: 1; min-width: 280px;">
+            <div style="flex: 1; min-width: 320px;">
                 <h3>📱 模擬下單</h3>
-                <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
-                    <div class="pe-input-group"><label>價格</label><input type="number" id="trade-price" value="605" oninput="calcTradeTotal()"></div>
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 15px; border: 1px solid #e6e9ee;">
+                    <div class="pe-input-group"><label>委託價</label><input type="number" id="trade-price" value="605" oninput="calcTradeTotal()"></div>
                     <div class="pe-input-group"><label>股數</label><input type="number" id="trade-shares" value="1000" oninput="calcTradeTotal()"></div>
-                    <div style="background: #fff; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
-                        <small>預計總額：</small><div id="trade-total" style="font-size: 18px; font-weight: bold;">NT$ 605,000</div>
+                    <div class="pe-input-group"><label>單筆成本</label><input type="number" id="trade-fee" value="0" readonly style="background:#f4f6f8;"></div>
+                    <div style="background: #fff; padding: 12px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #e1e6eb;">
+                        <div style="font-size: 13px; color: #555;">預估總額：</div>
+                        <div id="trade-total" style="font-size: 20px; font-weight: bold;">NT$ 605,000</div>
                     </div>
-                    <button onclick="executeTrade()" style="width:100%; background: #ff4d4d; color: white; border: none; padding: 10px; border-radius: 4px; font-weight: bold;">買進委託</button>
-                    <div id="trade-log" style="height: 20px; margin-top: 10px; font-size: 12px; color: #27ae60; text-align: center;"></div>
+                    <div style="display:grid; gap:10px;">
+                        <button onclick="executeTrade('buy')" style="width:100%; background: #2ecc71; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold;">買進委託</button>
+                        <button onclick="executeTrade('sell')" style="width:100%; background: #ff4d4d; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold;">賣出委託</button>
+                    </div>
+                    <div id="trade-log" style="min-height: 22px; margin-top: 12px; font-size: 13px; color: #27ae60; text-align: center;"></div>
+                </div>
+                <div style="margin-top: 14px; background: #e9f7ff; padding: 14px; border-radius: 12px; border: 1px solid #b8e2ff;">
+                    <p style="font-size: 13px; color: #555; line-height: 1.8; margin: 0;"><strong>手機操作提示：</strong> 券商 APP 會顯示委託價、可買張數、手續費與稅金。你可以先想好價位與總成本，再下單，以避免情緒交易。</p>
                 </div>
             </div>
         </div>
@@ -569,13 +598,29 @@
                 <div class="etf-card"><b>🏆 市值型 (如 0050)</b><p style="font-size: 13px; margin: 5px 0;">跟著大盤成長，適合長期累積，風險相對分散。</p></div>
                 <div class="etf-card" style="border-left-color: var(--warning-color);"><b>💰 高股息型 (如 0056, 00878)</b><p style="font-size: 13px; margin: 5px 0;">穩定配息，適合需要現金流的人，但波動與成長性較低。</p></div>
                 <div class="etf-card" style="border-left-color: #9b59b6;"><b>🌍 國際型 ETF</b><p style="font-size: 13px; margin: 5px 0;">透過海外 ETF 分散地域風險，獲取全球成長動能。</p></div>
-                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 15px;">
-                    <h5 style="margin: 0 0 10px 0;">💡 隱形魔鬼：</h5>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 12px;">
-                        <div style="background: #fff; padding: 8px; border-radius: 4px;"><b>內扣費用：</b> 經理費自動扣除。</div>
-                        <div style="background: #fff; padding: 8px; border-radius: 4px;"><b>折溢價：</b> 買價高於淨值。</div>
-                        <div style="background: #fff; padding: 8px; border-radius: 4px;"><b>匯率風險：</b> 海外 ETF 需考慮幣值變化。</div>
-                        <div style="background: #fff; padding: 8px; border-radius: 4px;"><b>再平衡：</b> 定期檢視與調整配置，保持風險水平。</div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; margin-top: 15px; border: 1px solid #dbe7f2;">
+                    <h5 style="margin: 0 0 14px 0;">💡 隱形魔鬼：成本、風險與時間</h5>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 14px; font-size: 13px; line-height: 1.7;">
+                        <div style="background: white; padding: 14px; border-radius: 10px; border: 1px solid #e6edf6;">
+                            <b>內扣費用</b><br>
+                            ETF 與基金會先扣除管理費、保管費等。即使你不買賣，報酬也會先被扣掉一部分。
+                        </div>
+                        <div style="background: white; padding: 14px; border-radius: 10px; border: 1px solid #e6edf6;">
+                            <b>折溢價</b><br>
+                            ETF 市價可能高於或低於淨值。買在溢價時，可能瞬間損失成本。
+                        </div>
+                        <div style="background: white; padding: 14px; border-radius: 10px; border: 1px solid #e6edf6;">
+                            <b>匯率風險</b><br>
+                            海外 ETF 受匯率影響；即使標的上漲，匯率走勢也會影響你的實際報酬。
+                        </div>
+                        <div style="background: white; padding: 14px; border-radius: 10px; border: 1px solid #e6edf6;">
+                            <b>再平衡</b><br>
+                            長期持有時，要定期檢視資產配置是否偏離目標，必要時補回核心或減少過重持股。
+                        </div>
+                    </div>
+                    <div style="margin-top: 18px; font-size: 13px; color: #555;">
+                        <p><strong>更完整的隱形成本：</strong> 除了費用，還有交易成本、點差、時間成本與心理成本。例如頻繁調整可能增加手續費，也可能導致錯失市場反彈。</p>
+                        <p><strong>新手建議：</strong> 選擇低費用、透明的 ETF，並把時間拉長，讓市場波動的短期噪音不影響你的長期計畫。</p>
                     </div>
                 </div>
             </div>
@@ -618,9 +663,13 @@
             <div style="flex: 1.5; min-width: 300px;">
                 <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; margin-bottom: 15px;">
                     <h4 style="margin-top:0;">🔢 投資必學：72 法則</h4>
-                    <p style="font-size: 14px;">公式：$72 / 年化報酬率 = 資產翻倍年數$</p>
+                    <p style="font-size: 14px;">公式：72 ÷ 年化報酬率 ≈ 資產翻倍年數。這是簡單估算複利效果的快捷方式。</p>
                     <div style="background: white; padding: 10px; border-radius: 5px; font-size: 13px;">
-                        例如：年化報酬 6%，則 72 / 6 = <b>12 年</b> 資產翻倍。
+                        例如：年化報酬 6%，72 ÷ 6 = <b>約 12 年</b>，資產翻倍。若年化 8%，則約 9 年翻倍。
+                    </div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #555; line-height: 1.7;">
+                        <p><strong>通用性：</strong>72 法則適合快速理解複利與時間關係，對新手有教學價值。</p>
+                        <p><strong>限制：</strong>它不是精準公式，實際報酬受市場波動、費用、稅金與投資策略影響。</p>
                     </div>
                 </div>
                 <div style="background: #fff; border: 1px solid #eee; padding: 15px; border-radius: 12px;">
@@ -766,22 +815,40 @@
         <h2 style="color: var(--primary-color); text-align: center;">🎓 投資理財畢業隨堂測驗</h2>
         <div id="quiz-container" style="max-width: 600px; margin: 0 auto;">
             <div id="q1">
-                <p><strong>1. 在台灣股市買進股票後，資金會在成交後的第幾天從銀行扣款 (T+2)？</strong></p>
-                <button class="quiz-option" onclick="checkQuiz(1, 'A', this)">A. 當天即刻扣款</button>
-                <button class="quiz-option" onclick="checkQuiz(1, 'B', this)">B. 第二個工作天 (T+2)</button>
-                <button class="quiz-option" onclick="checkQuiz(1, 'C', this)">C. 下一週</button>
+                <p><strong>1. 在複利計算器中，哪個變數可以讓你觀察長期資產翻倍效果？</strong></p>
+                <button class="quiz-option" onclick="checkQuiz(1, 'A', this)">A. 月投入金額</button>
+                <button class="quiz-option" onclick="checkQuiz(1, 'B', this)">B. 年化報酬率</button>
+                <button class="quiz-option" onclick="checkQuiz(1, 'C', this)">C. 投資年數</button>
             </div>
             <div id="q2" style="display:none;">
-                <p><strong>2. 根據賠錢數學，如果你投資虧損了 50%，你需要賺回多少百分比才能回本？</strong></p>
-                <button class="quiz-option" onclick="checkQuiz(2, 'A', this)">A. 50%</button>
-                <button class="quiz-option" onclick="checkQuiz(2, 'B', this)">B. 75%</button>
-                <button class="quiz-option" onclick="checkQuiz(2, 'C', this)">C. 100%</button>
+                <p><strong>2. 在台灣，股票賣出時常見的交易稅率約為多少？</strong></p>
+                <button class="quiz-option" onclick="checkQuiz(2, 'A', this)">A. 0.1%</button>
+                <button class="quiz-option" onclick="checkQuiz(2, 'B', this)">B. 0.3%</button>
+                <button class="quiz-option" onclick="checkQuiz(2, 'C', this)">C. 0.6%</button>
             </div>
             <div id="q3" style="display:none;">
-                <p><strong>3. 如果你想要購買追求與市場大盤同步成長的 ETF，你應該選擇哪一類型？</strong></p>
-                <button class="quiz-option" onclick="checkQuiz(3, 'A', this)">A. 市值型 (如 0050)</button>
-                <button class="quiz-option" onclick="checkQuiz(3, 'B', this)">B. 高股息型 (如 0056)</button>
-                <button class="quiz-option" onclick="checkQuiz(3, 'C', this)">C. 反向型 ETF</button>
+                <p><strong>3. 下列哪一種 K 線型態最常出現在趨勢轉折前，代表多空猶豫？</strong></p>
+                <button class="quiz-option" onclick="checkQuiz(3, 'A', this)">A. 十字線</button>
+                <button class="quiz-option" onclick="checkQuiz(3, 'B', this)">B. 錘子線</button>
+                <button class="quiz-option" onclick="checkQuiz(3, 'C', this)">C. 吞沒形態</button>
+            </div>
+            <div id="q4" style="display:none;">
+                <p><strong>4. 在基本面分析中，哪個指標最能直接衡量公司股東報酬效率？</strong></p>
+                <button class="quiz-option" onclick="checkQuiz(4, 'A', this)">A. 營收成長率</button>
+                <button class="quiz-option" onclick="checkQuiz(4, 'B', this)">B. ROE</button>
+                <button class="quiz-option" onclick="checkQuiz(4, 'C', this)">C. 交易量</button>
+            </div>
+            <div id="q5" style="display:none;">
+                <p><strong>5. 購買 ETF 時，哪一項隱形成本是你永遠不能忽略的？</strong></p>
+                <button class="quiz-option" onclick="checkQuiz(5, 'A', this)">A. 內扣費用</button>
+                <button class="quiz-option" onclick="checkQuiz(5, 'B', this)">B. 歷史股價</button>
+                <button class="quiz-option" onclick="checkQuiz(5, 'C', this)">C. 當日成交量</button>
+            </div>
+            <div id="q6" style="display:none;">
+                <p><strong>6. 若你的投資虧損 50%，要從跌深回本，你大約需要賺回多少？</strong></p>
+                <button class="quiz-option" onclick="checkQuiz(6, 'A', this)">A. 50%</button>
+                <button class="quiz-option" onclick="checkQuiz(6, 'B', this)">B. 75%</button>
+                <button class="quiz-option" onclick="checkQuiz(6, 'C', this)">C. 100%</button>
             </div>
             <div id="quiz-final" style="display:none; text-align:center; padding: 20px;">
                 <h3 style="color:var(--success-color)">🎉 恭喜！你已完成所有課程！</h3>
@@ -806,10 +873,13 @@
     function calcCompound() {
         const p = parseFloat(document.getElementById('m-p').value);
         const r = parseFloat(document.getElementById('m-r').value);
+        const years = parseInt(document.getElementById('m-y').value, 10);
         document.getElementById('m-p-val').innerText = "$" + p.toLocaleString();
         document.getElementById('m-r-val').innerText = r + "%";
+        document.getElementById('m-y-val').innerText = years + " 年";
+        document.getElementById('duration-label').innerText = years + " 年後資產總額";
         const monthlyRate = r / 100 / 12;
-        const months = 20 * 12;
+        const months = years * 12;
         const fv = p * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
         const totalCost = p * months;
         document.getElementById('cost-val').innerText = "$" + Math.round(totalCost).toLocaleString();
@@ -857,28 +927,52 @@
     }, 1000);
 
     function toggleK(type) {
-        const bar = document.getElementById('k-bar');
-        const lTop = document.getElementById('label-top');
-        const lBot = document.getElementById('label-bottom');
-        if(type === 'up') {
-            bar.style.background = '#ff4d4d';
-            lTop.innerText = "收盤價"; lBot.innerText = "開盤價";
+        const chart = document.getElementById('k-chart');
+        const entries = chart.querySelectorAll('.mini-candle div');
+        if (type === 'up') {
+            entries[0].style.background = '#2ecc71';
+            entries[0].style.borderColor = '#27ae60';
+            entries[1].style.background = '#2ecc71';
+            entries[1].style.borderColor = '#27ae60';
+            entries[2].style.background = '#2ecc71';
+            entries[2].style.borderColor = '#27ae60';
+            entries[3].style.background = '#ff4d4d';
+            entries[3].style.borderColor = '#d35400';
         } else {
-            bar.style.background = '#2ecc71';
-            lTop.innerText = "開盤價"; lBot.innerText = "收盤價";
+            entries[0].style.background = '#ff4d4d';
+            entries[0].style.borderColor = '#d35400';
+            entries[1].style.background = '#ff4d4d';
+            entries[1].style.borderColor = '#d35400';
+            entries[2].style.background = '#2ecc71';
+            entries[2].style.borderColor = '#27ae60';
+            entries[3].style.background = '#ff4d4d';
+            entries[3].style.borderColor = '#d35400';
         }
     }
 
     function calcTradeTotal() {
-        const p = Math.max(0, document.getElementById('trade-price').value);
-        const s = Math.max(0, document.getElementById('trade-shares').value);
-        document.getElementById('trade-total').innerText = "NT$ " + (p * s).toLocaleString();
+        const p = Math.max(0, parseFloat(document.getElementById('trade-price').value) || 0);
+        const s = Math.max(0, parseInt(document.getElementById('trade-shares').value, 10) || 0);
+        const total = p * s;
+        const fee = Math.max(0, total * 0.001425).toFixed(0);
+        document.getElementById('trade-fee').value = fee ? 'NT$ ' + Number(fee).toLocaleString() : 'NT$ 0';
+        document.getElementById('trade-total').innerText = "NT$ " + total.toLocaleString();
     }
 
-    function executeTrade() {
+    function executeTrade(action) {
         const log = document.getElementById('trade-log');
-        log.innerText = "✅ 已送出委託！(模擬)";
-        setTimeout(() => log.innerText = "", 2000);
+        const price = Math.max(0, parseFloat(document.getElementById('trade-price').value) || 0);
+        const shares = Math.max(0, parseInt(document.getElementById('trade-shares').value, 10) || 0);
+        if (price === 0 || shares === 0) {
+            log.style.color = '#d35400';
+            log.innerText = '請先輸入有效價格與股數。';
+            setTimeout(() => log.innerText = '', 2000);
+            return;
+        }
+        const actionText = action === 'sell' ? '賣出' : '買進';
+        log.style.color = '#27ae60';
+        log.innerText = `✅ 已送出${actionText}委託！成交價格 NT$ ${price.toLocaleString()}，股數 ${shares.toLocaleString()}。`;
+        setTimeout(() => log.innerText = '', 3000);
     }
 
     /* 第四章：分析切換與本益比 */
@@ -989,7 +1083,7 @@
     }
 
     /* 畢業測驗邏輯 */
-    const quizAnswers = { 1: 'B', 2: 'C', 3: 'A' };
+    const quizAnswers = { 1: 'C', 2: 'B', 3: 'A', 4: 'B', 5: 'A', 6: 'C' };
     
     function checkQuiz(qNum, choice, btn) {
         if (choice === quizAnswers[qNum]) {
