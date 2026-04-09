@@ -114,6 +114,7 @@
             width: 100%;
             height: 150px;
             perspective: 1000px;
+            cursor: pointer;
         }
         .flip-card-inner {
             position: relative;
@@ -123,7 +124,7 @@
             transition: transform 0.6s;
             transform-style: preserve-3d;
         }
-        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
         .flip-card-front, .flip-card-back {
             position: absolute;
             width: 100%;
@@ -137,6 +138,7 @@
             border: 1px solid #ddd;
         }
         .flip-card-front { background-color: #fff; color: var(--primary-color); font-weight: bold; }
+        .flip-card-front::after { content: "點擊翻轉"; font-size: 10px; color: #999; position: absolute; bottom: 5px; }
         .flip-card-back { background-color: #f0f5ff; color: var(--text-color); transform: rotateY(180deg); font-size: 13px; border-color: var(--info-color); }
 
         /* 分析面標籤 */
@@ -251,9 +253,9 @@
             <div style="flex: 2; min-width: 400px;">
                 <h4>📖 核心術語翻牌遊戲</h4>
                 <div class="term-grid">
-                    <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front">限價單</div><div class="flip-card-back">指定價格買賣，未達標不成交。</div></div></div>
-                    <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front">市價單</div><div class="flip-card-back">不計代價即刻成交，適合急單。</div></div></div>
-                    <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front">T+2</div><div class="flip-card-back">成交後的第二個工作天進行資金扣款。</div></div></div>
+                    <div class="flip-card" onclick="toggleFlip(this)"><div class="flip-card-inner"><div class="flip-card-front">限價單</div><div class="flip-card-back">指定價格買賣，未達標不成交。適合想要控制成本或鎖定利潤的投資人。</div></div></div>
+                    <div class="flip-card" onclick="toggleFlip(this)"><div class="flip-card-inner"><div class="flip-card-front">市價單</div><div class="flip-card-back">不計代價即刻成交，適合急單或市場波動大時。</div></div></div>
+                    <div class="flip-card" onclick="toggleFlip(this)"><div class="flip-card-inner"><div class="flip-card-front">T+2</div><div class="flip-card-back">成交後的第二個工作天進行資金扣款。台灣股市的結算制度，買進股票後需在 T+2 日前準備足夠資金。</div></div></div>
                 </div>
             </div>
         </div>
@@ -268,6 +270,23 @@
                 <div style="background: white; padding: 12px; border-radius: 8px; border-left: 4px solid #c53030;">⚖️ <strong>刑事責任：</strong> 情節重大者可處 3~10 年徒刑。</div>
                 <div style="background: white; padding: 12px; border-radius: 8px; border-left: 4px solid #c53030;">💸 <strong>鉅額罰款：</strong> 券商可追討最高成交金額 7% 違約金。</div>
             </div>
+        </div>
+
+        <div style="margin-top: 30px; background: #f0f9ff; border: 2px solid #bae7ff; padding: 20px; border-radius: 12px;">
+            <h4 style="color: var(--info-color); margin-top: 0;">🕒 台股交易時間與基本知識</h4>
+            <p style="font-size: 14px;">台灣股市（台股）交易時間為週一至週五，假期除外：</p>
+            <ul style="font-size: 14px; line-height: 1.8;">
+                <li><strong>集合競價：</strong> 08:30-09:00（決定開盤價）</li>
+                <li><strong>開盤競價：</strong> 09:00-09:15（最後決定開盤價）</li>
+                <li><strong>連續交易：</strong> 09:00-11:30（上午盤）、13:30-15:00（下午盤）</li>
+            </ul>
+            <p style="font-size: 14px;"><strong>台股基本知識：</strong></p>
+            <ul style="font-size: 13px; line-height: 1.6;">
+                <li><strong>指數：</strong> 加權指數 (TAIEX) 代表整體市場表現，由市值加權計算。</li>
+                <li><strong>漲跌幅限制：</strong> 個股單日漲跌幅 ±10%，指數 ±7%（熔斷機制）。</li>
+                <li><strong>交易單位：</strong> 每張 1000 股，最小交易單位為 1 張。</li>
+                <li><strong>結算制度：</strong> T+2，成交後第二個工作天結算。</li>
+            </ul>
         </div>
     </section>
 
@@ -521,6 +540,11 @@
         const share = document.getElementById('unit-share');
         if (type === 'lot') share.value = Math.max(0, lot.value) * 1000;
         else lot.value = Math.max(0, share.value) / 1000;
+    }
+
+    /* 翻轉卡片 */
+    function toggleFlip(card) {
+        card.classList.toggle('flipped');
     }
 
     /* 第三章：K線與下單 */
