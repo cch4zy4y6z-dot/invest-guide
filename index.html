@@ -348,31 +348,29 @@
     <section id="ch2">
         <h2 style="color: var(--info-color); border-bottom: 2px solid var(--info-color); padding-bottom: 10px;">第二章：交易單位與核心術語</h2>
         <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-            <div style="flex: 1; min-width: 300px; background: #fffbe6; padding: 20px; border-radius: 12px; border: 1px solid #ffe58f;">
-                <h4>📏 單位換算小工具</h4>
-                <div style="display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 10px;">
-                    <div><label>張數</label><br><input type="number" id="unit-lot" value="1" oninput="convertUnit('lot')" style="width: 100px; padding: 8px; border-radius: 4px; border: 1px solid #ccc;"></div>
-                    <div style="font-size: 24px; padding-top: 20px;">⇄</div>
-                    <div><label>股數</label><br><input type="number" id="unit-share" value="1000" oninput="convertUnit('share')" style="width: 100px; padding: 8px; border-radius: 4px; border: 1px solid #ccc;"></div>
+            <div style="flex: 1; min-width: 280px; background: #fffbe6; padding: 16px; border-radius: 12px; border: 1px solid #ffe58f;">
+                <h4 style="margin: 0 0 12px 0;">📏 單位換算</h4>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                    <div><label style="font-size: 12px;">張</label><input type="number" id="unit-lot" value="1" oninput="convertUnit('lot')" style="width: 60px; padding: 6px; border-radius: 4px; border: 1px solid #ccc; font-size: 12px;"></div>
+                    <div style="font-size: 18px;">=</div>
+                    <div><label style="font-size: 12px;">股</label><input type="number" id="unit-share" value="1000" oninput="convertUnit('share')" style="width: 80px; padding: 6px; border-radius: 4px; border: 1px solid #ccc; font-size: 12px;"></div>
                 </div>
-                <div style="margin-top: 18px; font-size: 14px; line-height: 1.8; color: #555;">
-                    台股 1 張 = 1000 股，這是最常見的交易單位。了解張數和股數，才能看懂交易成本與風險。
-                </div>
+                <div style="margin-top: 12px; font-size: 12px; color: #666;">1 張 = 1000 股</div>
             </div>
-            <div style="flex: 2; min-width: 400px;">
-                <h4>📖 核心術語翻牌遊戲</h4>
+            <div style="flex: 2.5; min-width: 380px;">
+                <h4 style="margin-top: 0;">📖 核心術語翻牌遊戲</h4>
                 <div class="term-grid">
                     <div class="flip-card" onclick="toggleFlip(this)"><div class="flip-card-inner"><div class="flip-card-front">限價單</div><div class="flip-card-back">指定價格買賣，未達標不成交。適合想要控制成本、鎖定買入價格或避開價格暴漲跌。</div></div></div>
                     <div class="flip-card" onclick="toggleFlip(this)"><div class="flip-card-inner"><div class="flip-card-front">市價單</div><div class="flip-card-back">不計代價即刻成交，適合急單或想快速進出市場。成本不可控，適合短期策略。</div></div></div>
                     <div class="flip-card" onclick="toggleFlip(this)"><div class="flip-card-inner"><div class="flip-card-front">T+2</div><div class="flip-card-back">成交後的第二個工作天進行資金扣款。台灣股市的結算制度，買進股票後需在 T+2 日前準備足夠資金。</div></div></div>
-                    <div class="flip-card" onclick="toggleFlip(this)"><div class="flip-card-inner"><div class="flip-card-front">手續費</div><div class="flip-card-back">券商收取的交易費用。台灣現行市場約 0.1425%（買進、賣出各計）或最低 20 元。</div></div></div>
-                    <div class="flip-card" onclick="toggleFlip(this)"><div class="flip-card-inner"><div class="flip-card-front">交易稅</div><div class="flip-card-back">股票賣出時由政府收取的稅金，台灣約為 0.3%。需把它納入總成本。</div></div></div>
+                    <div class="flip-card" onclick="toggleFlip(this)"><div class="flip-card-inner"><div class="flip-card-front">手續費</div><div class="flip-card-back">券商收取的交易費用，通常約 0.1425%（買進、賣出各計）。實際金額依券商而異，最低 20 元。</div></div></div>
+                    <div class="flip-card" onclick="toggleFlip(this)"><div class="flip-card-inner"><div class="flip-card-front">交易稅</div><div class="flip-card-back">股票賣出時由政府收取的稅金，台灣約為 0.3%。只在賣出時計算，需納入總成本。</div></div></div>
+                    <div class="flip-card" onclick="toggleFlip(this)"><div class="flip-card-inner"><div class="flip-card-front">委託價</div><div class="flip-card-back">你下單時指定的價格。限價單可控制，市價單則由市場決定成交價。</div></div></div>
                 </div>
             </div>
         </div>
 
-        <div style="margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-            <div style="background: #fff5f5; border: 2px solid #feb2b2; padding: 20px; border-radius: 12px;">
+        <div style="margin-top: 25px; background: #fff5f5; border: 2px solid #feb2b2; padding: 20px; border-radius: 12px;">
                 <h4 style="color: #c53030; margin-top: 0; display: flex; align-items: center;">⚠️ 絕對禁忌：違約交割</h4>
                 <p style="font-size: 14px; color: #555;">
                     <strong>什麼是違約交割？</strong> 在台灣股市 T+2 制度下，若你在成交後第二個工作天早上，銀行帳戶餘額不足扣款，即構成違約。
@@ -383,16 +381,6 @@
                     <div style="background: white; padding: 12px; border-radius: 8px; border-left: 4px solid #c53030;">💸 <strong>鉅額罰款：</strong> 券商可追討最高成交金額 7% 違約金。</div>
                 </div>
             </div>
-            <div style="background: #f8fafc; border: 1px solid #dfe8f2; padding: 20px; border-radius: 12px;">
-                <h4 style="margin-top: 0; color: #2c3e50;">📌 交易必備名詞</h4>
-                <ul style="font-size: 14px; line-height: 1.8; color: #444;">
-                    <li><strong>手續費：</strong> 證券商收取的交易費用，通常約 0.1425%（買進與賣出各計）或最低 20 元，實際金額依券商而異。</li>
-                    <li><strong>交易稅：</strong> 股票賣出時的稅金，台灣約為 0.3%，只在賣出時計算。</li>
-                    <li><strong>委託價：</strong> 你下單時所指定的價格；限價單可控制，市價單則由市場決定。</li>
-                    <li><strong>成交價：</strong> 真正成交的價格，市價單成交價可能與你看到的報價不同。</li>
-                </ul>
-            </div>
-        </div>
 
         <div style="margin-top: 30px; background: #f0f9ff; border: 2px solid #bae7ff; padding: 20px; border-radius: 12px;">
             <h4 style="color: var(--info-color); margin-top: 0;">🕒 台股交易時間與基本知識</h4>
@@ -414,49 +402,66 @@
 
     <!-- 第三章：K線實戰 (更新區塊) -->
     <section id="ch3">
-        <h2 style="color: #e67e22; border-bottom: 2px solid #e67e22; padding-bottom: 10px;">第三章：K線識別與模擬下單</h2>
+        <h2 style="color: #e67e22; border-bottom: 2px solid #e67e22; padding-bottom: 10px;">第三章：K線識別與模擬下單（Banbu未來無限公司0331）</h2>
         
-        <!-- 新增教學內容 -->
-        <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 25px;">
-            <div style="flex: 1; min-width: 300px; background: #fff9f2; padding: 20px; border-radius: 12px; border: 1px solid #ffe8cc;">
-                <h4 style="margin-top: 0; color: #d35400;">🧪 K線解剖學</h4>
-                <p style="font-size: 14px;">一根 K 線（Candlestick）紀錄了特定時間內的四個關鍵價格：</p>
-                <ul style="font-size: 13px; line-height: 1.8;">
-                    <li><b>實體 (Real Body)：</b> 開盤價與收盤價之間的方塊。</li>
-                    <li><b>影線 (Wicks)：</b> 實體上下伸出的細線，代表最高與最低價。</li>
-                    <li><b>上影線：</b> 頂端代表「最高價」，顯示上漲遇到的阻力。</li>
-                    <li><b>下影線：</b> 底端代表「最低價」，顯示下跌時支撐的力道。</li>
+        <div style="display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 20px; align-items: flex-start;">
+            <div style="flex: 1; min-width: 260px; background: #fff9f2; padding: 14px; border-radius: 12px; border: 1px solid #ffe8cc;">
+                <h4 style="margin: 0 0 10px 0; color: #d35400; font-size: 15px;">🧪 K線解剖學</h4>
+                <p style="font-size: 12px; margin: 8px 0;">一根K線紀錄特定時間內的四個關鍵價格：</p>
+                <ul style="font-size: 11px; line-height: 1.6; margin: 8px 0; padding-left: 18px;">
+                    <li><b>實體</b>：開盤與收盤之間的方塊</li>
+                    <li><b>上影線</b>：最高價，顯示阻力</li>
+                    <li><b>下影線</b>：最低價，顯示支撐</li>
                 </ul>
-                <p style="font-size: 13px; color: #555; margin-top: 12px;">重要觀察：K 線只有說明過去，不代表未來。務必搭配趨勢、成交量與風險管理。</p>
+                <p style="font-size: 11px; color: #666; margin: 8px 0;">K線只說明過去，務必搭配趨勢與風險管理。</p>
             </div>
-            <div style="flex: 1; min-width: 300px; background: #fdfdfd; padding: 20px; border-radius: 12px; border: 1px solid #eee;">
-                <h4 style="margin-top: 0; color: #2c3e50;">💡 顏色與型態關鍵</h4>
-                <div style="display: flex; gap: 15px; margin-top: 10px; flex-wrap: wrap;">
-                    <div style="flex:1; border-left: 4px solid #ff4d4d; padding-left: 10px;">
-                        <b style="color: #ff4d4d;">紅K (陽線)</b><br>
-                        <small>收盤 > 開盤，表示多方略占優勢。</small>
+            <div style="flex: 1; min-width: 260px; background: #fdfdfd; padding: 14px; border-radius: 12px; border: 1px solid #eee;">
+                <h4 style="margin: 0 0 10px 0; color: #2c3e50; font-size: 15px;">🔄 多頭 vs 空頭</h4>
+                <div style="display: grid; gap: 8px;">
+                    <div style="border-left: 4px solid #2ecc71; padding-left: 10px;">
+                        <b style="color: #2ecc71; font-size: 12px;">多頭（看漲）</b><br>
+                        <small style="color: #666;">收盤 > 開盤，買方力道強。</small>
                     </div>
-                    <div style="flex:1; border-left: 4px solid #2ecc71; padding-left: 10px;">
-                        <b style="color: #2ecc71;">綠K (陰線)</b><br>
-                        <small>收盤 < 開盤，表示賣方壓力較大。</small>
-                    </div>
-                </div>
-                <p style="font-size: 13px; color: #555; margin-top: 12px;">常見型態：</p>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 10px;">
-                    <div style="background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 14px;">
-                        <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 10px;"><div style="width: 12px; height: 40px; background: #2ecc71; border: 1px solid #27ae60; margin-right: 4px;"></div><div style="width: 12px; height: 10px; background: #2ecc71; border: 1px solid #27ae60; margin-top: 12px;"></div><strong>錘子線</strong></div>
-                        <p style="font-size: 13px; color: #555; margin:0;">實體小、上影線短、下影線長，代表下跌後買盤出現支撐，可能轉多。</p>
-                    </div>
-                    <div style="background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 14px;">
-                        <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 10px;"><div style="width: 12px; height: 40px; background: #ff4d4d; border: 1px solid #d35400; margin-right: 4px;"></div><div style="width: 12px; height: 10px; background: #ff4d4d; border: 1px solid #d35400; margin-top: 12px;"></div><strong>十字線</strong></div>
-                        <p style="font-size: 13px; color: #555; margin:0;">開盤與收盤幾乎相同，代表多空猶豫。出現在趨勢末端時，可能暗示反轉。</p>
-                    </div>
-                    <div style="background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 14px;">
-                        <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 10px;"><div style="width: 12px; height: 45px; background: #2ecc71; border: 1px solid #27ae60; margin-right: 4px;"></div><div style="width: 12px; height: 25px; background: #ff4d4d; border: 1px solid #d35400; margin-top: 10px;"></div><strong>吞沒形態</strong></div>
-                        <p style="font-size: 13px; color: #555; margin:0;">一根大 K 線包住前一根，若方向一致，表示慣性增強，趨勢可能延續。</p>
+                    <div style="border-left: 4px solid #ff4d4d; padding-left: 10px;">
+                        <b style="color: #ff4d4d; font-size: 12px;">空頭（看跌）</b><br>
+                        <small style="color: #666;">收盤 < 開盤，賣方力道強。</small>
                     </div>
                 </div>
-                <p style="font-size: 11px; color: #999; margin-top: 10px;">※ 註：在美股中，紅色通常代表跌，綠色代表漲，與台股顏色習慣不同。</p>
+                <p style="font-size: 11px; color: #999; margin-top: 8px;">※ 連續同方向K線通常代表趨勢延續。</p>
+            </div>
+        </div>
+
+        <h4 style="margin: 16px 0 12px 0; color: #d35400;">常見型態（文字-圖示對應）</h4>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 18px;">
+            <div style="background: #fff; border: 1px solid #ffe8cc; border-radius: 12px; padding: 12px; text-align: center;">
+                <div style="display: flex; align-items: flex-end; justify-content: center; gap: 1px; height: 45px; margin-bottom: 8px;">
+                    <div style="width: 2px; height: 12px; background: #27ae60;"></div>
+                    <div style="width: 12px; height: 24px; background: #2ecc71; border: 1px solid #27ae60; border-radius: 2px;"></div>
+                    <div style="width: 2px; height: 16px; background: #27ae60;"></div>
+                </div>
+                <small><b>錘子線</b></small><br>
+                <small style="color: #666; font-size: 10px;">下影線長，買盤支撐</small>
+            </div>
+            <div style="background: #fff; border: 1px solid #ffe8cc; border-radius: 12px; padding: 12px; text-align: center;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 1px; height: 45px; margin-bottom: 8px;">
+                    <div style="width: 2px; height: 20px; background: #2c3e50;"></div>
+                    <div style="width: 12px; height: 6px; background: #2c3e50; border: 1px solid #2c3e50;"></div>
+                    <div style="width: 2px; height: 20px; background: #2c3e50;"></div>
+                </div>
+                <small><b>十字線</b></small><br>
+                <small style="color: #666; font-size: 10px;">多空猶豫，反轉訊號</small>
+            </div>
+            <div style="background: #fff; border: 1px solid #ffe8cc; border-radius: 12px; padding: 12px; text-align: center;">
+                <div style="display: flex; align-items: flex-end; justify-content: center; gap: 1px; height: 45px; margin-bottom: 8px;">
+                    <div style="width: 2px; height: 8px; background: #d35400;"></div>
+                    <div style="width: 12px; height: 20px; background: #2ecc71; border: 1px solid #27ae60; border-radius: 2px;"></div>
+                    <div style="width: 2px; height: 6px; background: #d35400;\"></div>
+                    <div style="margin-left: 3px; width: 2px; height: 14px; background: #d35400;\"></div>
+                    <div style="width: 12px; height: 18px; background: #ff4d4d; border: 1px solid #d35400; border-radius: 2px;\"></div>
+                    <div style="width: 2px; height: 12px; background: #d35400;\"></div>
+                </div>
+                <small><b>吞沒形態</b></small><br>
+                <small style="color: #666; font-size: 10px;\">大線吞小線，趨勢延續</small>
             </div>
         </div>
 
@@ -478,11 +483,27 @@
         <div style="display: flex; gap: 20px; flex-wrap: wrap; background: #fff; border: 1px solid #ddd; padding: 20px; border-radius: 0 0 8px 8px;">
             <div style="flex: 1.5; min-width: 320px; border-right: 1px solid #eee; padding-right: 20px; text-align: left;">
                 <h4 style="margin-top: 0; color: #2c3e50;">📈 K 線連續圖示</h4>
-                <div id="k-chart" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; height: 220px; padding: 10px; border: 1px solid #eee; border-radius: 12px; background: #fafbfc;">
-                    <div class="mini-candle" id="candle-1" style="flex:1; display:flex; align-items:flex-end; justify-content:center;"><div style="width: 22px; height: 100px; background: #2ecc71; border: 2px solid #27ae60; border-radius: 4px 4px 0 0;"></div></div>
-                    <div class="mini-candle" id="candle-2" style="flex:1; display:flex; align-items:flex-end; justify-content:center;"><div style="width: 22px; height: 70px; background: #ff4d4d; border: 2px solid #d35400; border-radius: 4px 4px 0 0;"></div></div>
-                    <div class="mini-candle" id="candle-3" style="flex:1; display:flex; align-items:flex-end; justify-content:center;"><div style="width: 22px; height: 120px; background: #2ecc71; border: 2px solid #27ae60; border-radius: 4px 4px 0 0;"></div></div>
-                    <div class="mini-candle" id="candle-4" style="flex:1; display:flex; align-items:flex-end; justify-content:center;"><div style="width: 22px; height: 90px; background: #ff4d4d; border: 2px solid #d35400; border-radius: 4px 4px 0 0;"></div></div>
+                <div id="k-chart" style="display: flex; align-items: flex-end; justify-content: space-around; gap: 12px; height: 160px; padding: 12px; border: 1px solid #eee; border-radius: 12px; background: #fafbfc;">
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1; text-align: center;">
+                        <div style="width: 1.5px; height: 10px; background: #27ae60;"></div>
+                        <div style="width: 14px; height: 40px; background: #2ecc71; border: 1px solid #27ae60; border-radius: 1px;"></div>
+                        <div style="width: 1.5px; height: 14px; background: #27ae60;"></div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1; text-align: center;">
+                        <div style="width: 1.5px; height: 16px; background: #d35400;"></div>
+                        <div style="width: 14px; height: 32px; background: #ff4d4d; border: 1px solid #d35400; border-radius: 1px;"></div>
+                        <div style="width: 1.5px; height: 8px; background: #d35400;"></div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1; text-align: center;">
+                        <div style="width: 1.5px; height: 12px; background: #27ae60;"></div>
+                        <div style="width: 14px; height: 48px; background: #2ecc71; border: 1px solid #27ae60; border-radius: 1px;"></div>
+                        <div style="width: 1.5px; height: 10px; background: #27ae60;"></div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1; text-align: center;">
+                        <div style="width: 1.5px; height: 14px; background: #d35400;"></div>
+                        <div style="width: 14px; height: 36px; background: #ff4d4d; border: 1px solid #d35400; border-radius: 1px;"></div>
+                        <div style="width: 1.5px; height: 12px; background: #d35400;"></div>
+                    </div>
                 </div>
                 <div style="display: flex; justify-content: space-between; margin-top: 12px; font-size: 13px; color: #555;">
                     <span>支撐</span><span>趨勢</span><span>壓力</span>
@@ -499,12 +520,11 @@
             <div style="flex: 1; min-width: 320px;">
                 <h3>📱 模擬下單</h3>
                 <div style="background: #f8f9fa; padding: 15px; border-radius: 15px; border: 1px solid #e6e9ee;">
-                    <div class="pe-input-group"><label>委託價</label><input type="number" id="trade-price" value="605" oninput="calcTradeTotal()"></div>
+                    <div class="pe-input-group"><label>委託價</label><input type="number" id="trade-price" value="31" oninput="calcTradeTotal()"></div>
                     <div class="pe-input-group"><label>股數</label><input type="number" id="trade-shares" value="1000" oninput="calcTradeTotal()"></div>
-                    <div class="pe-input-group"><label>單筆成本</label><input type="number" id="trade-fee" value="0" readonly style="background:#f4f6f8;"></div>
-                    <div style="background: #fff; padding: 12px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #e1e6eb;">
-                        <div style="font-size: 13px; color: #555;">預估總額：</div>
-                        <div id="trade-total" style="font-size: 20px; font-weight: bold;">NT$ 605,000</div>
+                    <div style="background: #fff; padding: 12px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #e1e6eb;\">
+                        <div style="font-size: 13px; color: #555;\">預估總額：</div>
+                        <div id=\"trade-total\" style=\"font-size: 20px; font-weight: bold;\">NT$ 31,000</div>
                     </div>
                     <div style="display:grid; gap:10px;">
                         <button onclick="executeTrade('buy')" style="width:100%; background: #2ecc71; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold;">買進委託</button>
@@ -674,11 +694,19 @@
                 </div>
                 <div style="background: #fff; border: 1px solid #eee; padding: 15px; border-radius: 12px;">
                     <h4 style="margin-top:0;">🧘 核心心法</h4>
-                    <ul style="font-size: 13px; padding-left: 18px; line-height: 1.6;">
-                        <li><b>閒錢投資：</b> 絕不借錢，不影響生活。</li>
-                        <li><b>定期定額：</b> 克服人性恐懼，攤平買入成本。</li>
-                        <li><b>獨立思考：</b> 聽明牌是投資最危險的行為。</li>
+                    <ul style="font-size: 13px; padding-left: 18px; line-height: 1.8;">
+                        <li><b>閒錢投資：</b> 絕不借錢，不影響生活。巴菲特強調只用閒置資本投資。</li>
+                        <li><b>定期定額：</b> 克服人性恐懼，攤平買入成本。長期受惠於平均成本法。</li>
+                        <li><b>獨立思考：</b> 聽明牌是投資最危險的行為。做自己功課，堅守投資原則。</li>
+                        <li><b>安全邊際：</b> 只在股價低於合理價值時才買入。降低風險，提高預期報酬。</li>
+                        <li><b>長期耐心：</b> 時間是投資者最好的朋友。不為短期波動而頻繁交易。</li>
+                        <li><b>風險優先：</b> 「永遠不要賠錢」是第一法則。保護本金比追逐高報酬更重要。</li>
                     </ul>
+                    <div style="margin-top: 14px; font-size: 12px; color: #666; line-height: 1.7; border-top: 1px solid #eee; padding-top: 10px;">
+                        <p style="margin: 0;"><strong>投資智慧語錄：</strong></p>
+                        <p style="margin: 6px 0;">「在別人恐懼時貪婪，在別人貪婪時恐懼。」— 沃倫·巴菲特</p>
+                        <p style="margin: 6px 0;">「投資成功的關鍵是做你理解的事，堅持長期持有。」— 彼得·林奇</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -850,10 +878,24 @@
                 <button class="quiz-option" onclick="checkQuiz(6, 'B', this)">B. 75%</button>
                 <button class="quiz-option" onclick="checkQuiz(6, 'C', this)">C. 100%</button>
             </div>
-            <div id="quiz-final" style="display:none; text-align:center; padding: 20px;">
-                <h3 style="color:var(--success-color)">🎉 恭喜！你已完成所有課程！</h3>
-                <p>你已經具備了基礎的投資觀念。記住：投資的第一準則就是「永遠不要賠錢」。</p>
-                <button onclick="resetQuiz()" style="background:var(--info-color); color:white; border:none; padding:10px 20px; border-radius:25px; font-weight:bold;">重新測驗</button>
+            <div id="q7" style="display:none;">
+                <p><strong>7. 在投資過程中，最常見的心理陷阱是什麼？</strong></p>
+                <button class="quiz-option" onclick="checkQuiz(7, 'A', this)">A. 過度自信與追漲殺跌</button>
+                <button class="quiz-option" onclick="checkQuiz(7, 'B', this)">B. 持續學習基本面</button>
+                <button class="quiz-option" onclick="checkQuiz(7, 'C', this)">C. 建立投資紀律</button>
+            </div>
+            <div id="q8" style="display:none;">
+                <p><strong>8. 構建完整投資架構的核心要素是什麼？</strong></p>
+                <button class="quiz-option" onclick="checkQuiz(8, 'A', this)">A. 短期快速獲利</button>
+                <button class="quiz-option" onclick="checkQuiz(8, 'B', this)">B. 風險管理、分散配置、長期堅持</button>
+                <button class="quiz-option" onclick="checkQuiz(8, 'C', this)">C. 依賴技術分析預測</button>
+            </div>
+            <div id="quiz-final" style="display:none; text-align:center; padding: 20px; background: linear-gradient(135deg, #fff5f5, #fffbf0); border-radius: 10px; margin-top: 20px;">
+                <h3 id="quiz-title-msg" style="color:var(--success-color); font-size: 24px;">🎉 恭喜完成测验！</h3>
+                <div id="quiz-score-display" style="font-size: 48px; color: var(--primary-color); font-weight: bold; margin: 20px 0;">0 / 8</div>
+                <p id="quiz-feedback-msg" style="font-size: 18px; color: #333; margin: 20px 0;">你已經具備了基礎的投資觀念！</p>
+                <p style="color: #666; font-size: 14px;">投資是一場馬拉松。保住本金，穩定產出，時間會給你應有的報酬。</p>
+                <button onclick="resetQuiz()" style="background:var(--info-color); color:white; border:none; padding:10px 20px; border-radius:25px; font-weight:bold; cursor:pointer; margin-top:15px;">重新測驗</button>
             </div>
         </div>
     </section>
@@ -1083,18 +1125,22 @@
     }
 
     /* 畢業測驗邏輯 */
-    const quizAnswers = { 1: 'C', 2: 'B', 3: 'A', 4: 'B', 5: 'A', 6: 'C' };
+    const quizAnswers = { 1: 'C', 2: 'B', 3: 'A', 4: 'B', 5: 'A', 6: 'C', 7: 'A', 8: 'B' };
+    let quizScore = 0;
+    let questionsAnswered = 0;
     
     function checkQuiz(qNum, choice, btn) {
         if (choice === quizAnswers[qNum]) {
+            quizScore++;
             btn.classList.add('correct');
             btn.innerText += " ✅ 正確！";
             setTimeout(() => {
                 document.getElementById(`q${qNum}`).style.display = 'none';
-                if (qNum < 3) {
+                questionsAnswered++;
+                if (qNum < 8) {
                     document.getElementById(`q${qNum + 1}`).style.display = 'block';
                 } else {
-                    document.getElementById('quiz-final').style.display = 'block';
+                    showQuizFinal();
                 }
             }, 800);
         } else {
@@ -1106,13 +1152,43 @@
             }, 1000);
         }
     }
+    
+    function showQuizFinal() {
+        const scoreDiv = document.getElementById('quiz-score-display');
+        const feedbackMsg = document.getElementById('quiz-feedback-msg');
+        const titleMsg = document.getElementById('quiz-title-msg');
+        
+        scoreDiv.innerText = quizScore + " / 8";
+        
+        if (quizScore <= 2) {
+            titleMsg.innerText = "💪 繼續加油！";
+            feedbackMsg.innerText = "你還需要多複習投資的基礎觀念。投資是馬拉松不是短跑，穩紮穩打才是王道。别放棄，再讀一次，你一定能掌握！";
+        } else if (quizScore <= 4) {
+            titleMsg.innerText = "👍 不錯的開始！";
+            feedbackMsg.innerText = "你已掌握投資的基本概念。建議深化對關鍵主題的理解，特別是風險管理和組合配置。繼續努力！";
+        } else if (quizScore <= 6) {
+            titleMsg.innerText = "🌟 優異表現！";
+            feedbackMsg.innerText = "你已準備好開始實踐投資計畫。記得時刻保持紀律，不被短期波動影響決策。你正走在致富的路上！";
+        } else {
+            titleMsg.innerText = "🏆 完美！";
+            feedbackMsg.innerText = "恭喜成為投資小達人！你已完全掌握八大投資核心。現在該是付諸行動的時候了。未來無限！";
+        }
+        
+        document.getElementById('quiz-final').style.display = 'block';
+    }
 
     function resetQuiz() {
+        quizScore = 0;
+        questionsAnswered = 0;
         document.getElementById('quiz-final').style.display = 'none';
         document.getElementById('q1').style.display = 'block';
+        for (let i = 2; i <= 8; i++) {
+            document.getElementById(`q${i}`).style.display = 'none';
+        }
         document.querySelectorAll('.quiz-option').forEach(btn => {
             btn.classList.remove('correct', 'wrong');
-            btn.innerText = btn.innerText.split(' ✅')[0];
+            const originalText = btn.innerText.split(' ✅')[0];
+            btn.innerText = originalText;
         });
     }
 
