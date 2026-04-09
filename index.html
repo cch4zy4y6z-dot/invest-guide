@@ -231,6 +231,38 @@
             color: #1f4f91;
             display: none;
         }
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .concept-card {
+            background: white;
+            border: 1px solid #d8dce6;
+            border-radius: 14px;
+            padding: 18px;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+        .concept-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--info-color);
+        }
+        .concept-card.active {
+            border-color: var(--info-color);
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.08);
+        }
+        .concept-detail {
+            margin-top: 18px;
+            padding: 18px;
+            background: #eef7ff;
+            border-radius: 12px;
+            border-left: 4px solid var(--info-color);
+            font-size: 14px;
+            line-height: 1.8;
+            display: none;
+        }
 
         @media (max-width: 900px) {
             nav { flex-wrap: wrap; gap: 5px; justify-content: center; }
@@ -261,6 +293,7 @@
     <a href="#ch5">ETF配置</a>
     <a href="#ch6">投資心法</a>
     <a href="#ch7">投資思維</a>
+    <a href="#ch8">進階概念</a>
     <a href="#quiz-section">畢業測驗</a>
 </nav>
 
@@ -656,6 +689,78 @@
         </div>
     </section>
 
+    <!-- 第八章：進階概念與完整投資架構 -->
+    <section id="ch8">
+        <h2 style="color: #34495e; border-bottom: 2px solid #34495e; padding-bottom: 10px;">第八章：進階概念與完整投資架構</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-bottom: 20px;">
+            <div style="background: #f8fafc; padding: 20px; border-radius: 14px; border: 1px solid #d7e4f0;">
+                <h4 style="margin-top: 0; color: #34495e;">🎯 投資流程</h4>
+                <ol style="font-size: 14px; line-height: 1.8; color: #444; padding-left: 18px; margin: 0;">
+                    <li>訂定目標與風險承受度</li>
+                    <li>資產配置與核心標的決定</li>
+                    <li>篩選個股與評估價值</li>
+                    <li>執行計畫與風險控管</li>
+                    <li>檢視績效並持續調整</li>
+                </ol>
+            </div>
+            <div style="background: #f3f7f5; padding: 20px; border-radius: 14px; border: 1px solid #d8e6df;">
+                <h4 style="margin-top: 0; color: #229954;">📚 進階投資策略</h4>
+                <ul style="font-size: 14px; line-height: 1.8; color: #444; margin: 0; padding-left: 18px;">
+                    <li>核心-衛星：以 ETF 作核心，個股作衛星輔助。</li>
+                    <li>價值投資：買入被低估且具安全邊際的企業。</li>
+                    <li>成長投資：選擇未來成長高、報酬潛力大的公司。</li>
+                    <li>配息投資：建立現金流，穩定收入。</li>
+                </ul>
+            </div>
+            <div style="background: #fff8f5; padding: 20px; border-radius: 14px; border: 1px solid #f2d7ca;">
+                <h4 style="margin-top: 0; color: #d35400;">⚖️ 風險與報酬架構</h4>
+                <p style="font-size: 14px; color: #444; line-height: 1.8; margin: 0;">每一個投資決策都要同時評估報酬潛力和損失風險。控制單筆持倉比例，避免因個股波動造成過大回撤。</p>
+            </div>
+        </div>
+        <div style="background: #ffffff; border: 1px solid #dfe4e8; padding: 20px; border-radius: 14px;">
+            <h4 style="margin-top: 0; color: #34495e;">🔎 進階概念卡片：點擊查看解釋</h4>
+            <div class="concept-grid">
+                <div class="concept-card active" data-concept="value" onclick="showConcept('value')">
+                    <strong>價值投資</strong><br><small>安全邊際與低估價格</small>
+                </div>
+                <div class="concept-card" data-concept="growth" onclick="showConcept('growth')">
+                    <strong>成長投資</strong><br><small>高成長企業與未來動能</small>
+                </div>
+                <div class="concept-card" data-concept="core" onclick="showConcept('core')">
+                    <strong>核心-衛星</strong><br><small>ETF + 個股混合配置</small>
+                </div>
+                <div class="concept-card" data-concept="finance" onclick="showConcept('finance')">
+                    <strong>財報三大表</strong><br><small>現金流、損益與資產負債</small>
+                </div>
+                <div class="concept-card" data-concept="sizing" onclick="showConcept('sizing')">
+                    <strong>倉位控制</strong><br><small>分散風險、設定資金上限</small>
+                </div>
+            </div>
+            <div id="concept-detail" class="concept-detail" style="display: block;">
+                <strong>價值投資：</strong> 選擇獲利穩定、現金流良好、股價低於內在價值的企業。安全邊際越高，下跌風險越低。
+            </div>
+        </div>
+        <div style="margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px;">
+            <div style="background: #f8f9fa; padding: 18px; border-radius: 14px; border: 1px solid #dce5ea;">
+                <h4 style="margin-top: 0; color: #34495e;">📈 基本面延伸</h4>
+                <ul style="font-size: 14px; line-height: 1.8; color: #444; padding-left: 18px; margin: 0;">
+                    <li>營收穩定成長是健康企業的基礎。</li>
+                    <li>自由現金流強於淨利，代表現金舖陳較好。</li>
+                    <li>槓桿適中比完全無債更能承受景氣循環。</li>
+                </ul>
+            </div>
+            <div style="background: #f7f6ff; padding: 18px; border-radius: 14px; border: 1px solid #e1ddf5;">
+                <h4 style="margin-top: 0; color: #6b5b95;">🚫 常見新手誤區</h4>
+                <ul style="font-size: 14px; line-height: 1.8; color: #444; padding-left: 18px; margin: 0;">
+                    <li>追漲殺跌、憑消息買賣。</li>
+                    <li>把全部資金押在單一標的。</li>
+                    <li>忽視手續費、交易稅與匯率風險。</li>
+                    <li>看短線噪音，忽略長期目標。</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
     <!-- 畢業測驗模組 -->
     <section id="quiz-section" style="background: linear-gradient(135deg, #f0f7ff, #ffffff); border: 2px solid var(--info-color);">
         <h2 style="color: var(--primary-color); text-align: center;">🎓 投資理財畢業隨堂測驗</h2>
@@ -820,6 +925,23 @@
         else status.innerText = "🔴 價格偏高";
     }
 
+    function showConcept(name) {
+        const detail = document.getElementById('concept-detail');
+        const cards = document.querySelectorAll('.concept-card');
+        cards.forEach(card => {
+            card.classList.toggle('active', card.dataset.concept === name);
+        });
+        const concepts = {
+            value: '<strong>價值投資：</strong> 選擇獲利穩定、現金流良好、股價低於內在價值的企業。安全邊際能減少大跌風險。',
+            growth: '<strong>成長投資：</strong> 尋找營收與獲利快速成長的公司，期待未來價值上升。需注意估值與成長速度是否合理。',
+            core: '<strong>核心-衛星：</strong> 將 ETF 作為長期核心持股，再加上少量個股作為增長或特定主題配置，兼顧穩定與機會。',
+            finance: '<strong>財報三大表：</strong> 損益表看獲利、資產負債表看負債與淨值、現金流量表看現金是否健康。三表一起看最完整。',
+            sizing: '<strong>倉位控制：</strong> 單筆持股不要太重，避免一個標的波動影響整體資產。建議設定每檔上限與分批布局。'
+        };
+        detail.innerHTML = concepts[name] || '請點擊一張卡片查看進階概念說明。';
+        detail.style.display = 'block';
+    }
+
     /* 第五章：資產配置 */
     function updateAllocation() {
         const stockVal = document.getElementById('risk-slider').value;
@@ -907,6 +1029,7 @@
         checkStock();
         updateAllocation();
         calcLossRecovery();
+        showConcept('value');
     };
 </script>
 </body>
